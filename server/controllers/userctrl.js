@@ -75,6 +75,27 @@ var login = function (req, res) {
   })
 }
 
+var userData = function (req, res) {
+  let token = req.body.token
+  if (token) {
+    jwt.verify(token, sec, (err, decoded) => {
+      res.send(decoded)
+    })
+  } else res.send({ msg: 'Not logged in' })
+}
+
+var authUser = function (req, res, next) {
+  let token = req.body.token
+  if (token) {
+    jwt.verify(token, sec, (err, decoded) => {
+      if (!err) {
+        req.body.customer = decoded._id
+        next()
+      } else res.send(err)
+    })
+  } else res.send({ msg: 'Not logged in' })
+}
+
 module.exports = {
   get, signup, update, remove, login
 }
