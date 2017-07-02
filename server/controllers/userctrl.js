@@ -97,5 +97,5 @@ var authUser = function (req, res, next) {
 }
 
 module.exports = {
-  get, signup, update, remove, login
+  get, signup, update, remove, login, userData, authUser
 }
