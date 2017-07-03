@@ -7,7 +7,9 @@ var transactionSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  transactionDate: Date
+  transactionDate: Date,
+  completionDate: Date,
+  completed: Boolean
 })
 
 var Transaction = mongoose.model('Transaction', transactionSchema)
